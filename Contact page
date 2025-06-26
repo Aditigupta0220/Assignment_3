@@ -1,0 +1,146 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: ContactPage(),
+  ));
+}
+
+class ContactPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: Icon(Icons.arrow_back, color: Colors.black),
+        title: Text('Contact', style: TextStyle(color: Colors.black)),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, please don't hesitate to reach out.",
+              style: TextStyle(color: Colors.grey[800], fontSize: 14),
+            ),
+            SizedBox(height: 24),
+            Text('Contact Information',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            SizedBox(height: 12),
+            contactRow('Email', 'support@example.com'),
+            contactRow('Phone', '+1 (555) 123-4567'),
+            contactRow('Address', '123 Main Street, Anytown, USA'),
+            SizedBox(height: 24),
+            Text('Contact Form',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            SizedBox(height: 12),
+            inputField('Your  Name'),
+            SizedBox(height: 12),
+            inputField('Your  Email'),
+            SizedBox(height: 12),
+            messageBox(),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[600],
+                padding: EdgeInsets.symmetric(vertical: 14),
+                minimumSize: Size(double.infinity, 50),
+              ),
+              child: Text('Send Message'),
+            ),
+            SizedBox(height: 32),
+            Text('Follow Us',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            SizedBox(height: 16),
+            socialRow(Icons.facebook, 'Facebook'),
+            socialRow(Icons.twitter, 'Twitter'),
+            socialRow(Icons.camera_alt_outlined, 'Instagram'),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 2,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.info_outline), label: 'About'),
+          BottomNavigationBarItem(icon: Icon(Icons.mail_outline), label: 'Contact'),
+        ],
+      ),
+    );
+  }
+
+  Widget contactRow(String label, String info) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          SizedBox(width: 80, child: Text(label)),
+          Text(info),
+        ],
+      ),
+    );
+  }
+
+  Widget inputField(String hint) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hint,
+        ),
+      ),
+    );
+  }
+
+  Widget messageBox() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      height: 120,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextField(
+        maxLines: null,
+        expands: true,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: 'Your Message',
+        ),
+      ),
+    );
+  }
+
+  Widget socialRow(IconData icon, String label) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 20),
+          ),
+          SizedBox(width: 12),
+          Text(label),
+        ],
+      ),
+    );
+  }
+}
